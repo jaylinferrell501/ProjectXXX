@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmimatorManager : MonoBehaviour
+public class AnimatorManager : MonoBehaviour
 {
     // Our Animator reference variable
     Animator animator;
