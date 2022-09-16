@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 4
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -2313,6 +2313,7 @@ GameObject:
   - component: {fileID: 987751340}
   - component: {fileID: 987751341}
   - component: {fileID: 987751347}
+  - component: {fileID: 987751353}
   m_Layer: 0
   m_Name: ThirdPersonCharacter
   m_TagString: Untagged
@@ -3911,6 +3912,7 @@ MonoBehaviour:
   CameraPivot: {fileID: 61599040}
   CameraObject: {fileID: 1823688466}
   Player: {fileID: 367591769}
+  CameraSmoothTime: 0.1
   MaximumPivotAngle: 15
   MinimumPivotAngle: -15
 --- !u!4 &571911865
@@ -4163,6 +4165,7 @@ MonoBehaviour:
   HorizontalMovementInput: 0
   VerticalCameraInput: 0
   HorizontalCameraInput: 0
+  RunInput: 0
 --- !u!136 &987751351
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4193,6 +4196,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &987751353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367591769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78dd7f40d2a8a554f8e0d2a676f975cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerCamera: {fileID: 571911865}
+  RotationSpeed: 3.5
 --- !u!1 &1537228059
 GameObject:
   m_ObjectHideFlags: 0

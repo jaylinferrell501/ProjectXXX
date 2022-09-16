@@ -15,7 +15,7 @@ public class AmimatorManager : MonoBehaviour
     }
 
 
-    public void HandleAnimatorValues(float horizontalMovement, float verticalMovement)
+    public void HandleAnimatorValues(float horizontalMovement, float verticalMovement, bool isRunning)
     {
         if (horizontalMovement > 0)
         {
@@ -41,6 +41,11 @@ public class AmimatorManager : MonoBehaviour
         else
         {
             _snappedVertical = 0;
+        }
+
+        if (isRunning)
+        {
+            _snappedVertical = 2;
         }
 
         _animator.SetFloat("Horizontal", _snappedHorizontal, 0.1f, Time.deltaTime);

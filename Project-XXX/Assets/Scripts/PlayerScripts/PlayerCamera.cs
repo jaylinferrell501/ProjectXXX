@@ -18,8 +18,8 @@ public class PlayerCamera : MonoBehaviour
     Vector3 _cameraRotation;
     private Quaternion _targetRotation;
 
-    [Header("Camera Speeds")] float _cameraSmoothTime = 0.2f;
-
+    [Header("Camera Speeds")]
+    public float CameraSmoothTime = 0.2f;
     float _lookAmountVertical;
     float _lookAmountHorizontal;
     public float MaximumPivotAngle = 15.0f;
@@ -36,7 +36,7 @@ public class PlayerCamera : MonoBehaviour
     private void FollowPlayer()
     {
         _targetPosition = Vector3.SmoothDamp(transform.position, Player.transform.position, ref _cameraFollowVelocity,
-            _cameraSmoothTime * Time.deltaTime);
+            CameraSmoothTime * Time.deltaTime);
         transform.position = _targetPosition;
     }
 
@@ -50,13 +50,13 @@ public class PlayerCamera : MonoBehaviour
         _cameraRotation = Vector3.zero;
         _cameraRotation.y = _lookAmountVertical;
         _targetRotation = Quaternion.Euler(_cameraRotation);
-        _targetRotation = Quaternion.Slerp(transform.rotation, _targetRotation, _cameraSmoothTime);
+        _targetRotation = Quaternion.Slerp(transform.rotation, _targetRotation, CameraSmoothTime);
         transform.rotation = _targetRotation;
 
         _cameraRotation = Vector3.zero;
         _cameraRotation.x = _lookAmountHorizontal;
         _targetRotation = Quaternion.Euler(_cameraRotation);
-        _targetRotation = Quaternion.Slerp(CameraPivot.localRotation, _targetRotation, _cameraSmoothTime);
+        _targetRotation = Quaternion.Slerp(CameraPivot.localRotation, _targetRotation, CameraSmoothTime);
         CameraPivot.localRotation = _targetRotation;
     }   
 }

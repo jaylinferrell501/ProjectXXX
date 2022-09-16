@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -19,6 +20,9 @@ public class InputManager : MonoBehaviour
     public float VerticalCameraInput;
     public float HorizontalCameraInput;
     private Vector2 _cameraInput;
+
+    [Header("Button Inputs")] 
+    public bool RunInput;
 
     private void Awake()
     {
@@ -40,6 +44,10 @@ public class InputManager : MonoBehaviour
             _playerControls.PlayerMovement.Movement.performed += i => _movementInput = i.ReadValue<Vector2>();
             // if we press MOUSE is detected feed input back to the _cameraInput.
             _playerControls.PlayerMovement.Camera.performed += i => _cameraInput = i.ReadValue<Vector2>();
+            // when you hold [Left shift] down this will be true
+            _playerControls.PlayerMovement.Run.performed += i => RunInput = true;
+            // when you let go of [Left Shift] this will be false
+            _playerControls.PlayerMovement.Run.canceled += i => RunInput = false;
         } 
 
         _playerControls.Enable();
@@ -56,7 +64,6 @@ public class InputManager : MonoBehaviour
         HandleMovementInput();
         // Handle our CameraInput
         HandleCameraInput();
-        // Handle our SprintInput
     }
 
     // Edits our Animator Values
@@ -64,7 +71,7 @@ public class InputManager : MonoBehaviour
     {
         HorizontalMovementInput = _movementInput.x;
         VerticalMovementInput = _movementInput.y;
-        _animatorManager.HandleAnimatorValues(HorizontalMovementInput, VerticalMovementInput);
+        _animatorManager.HandleAnimatorValues(HorizontalMovementInput, VerticalMovementInput, RunInput);
     }
 
     private void HandleCameraInput()
